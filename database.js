@@ -1,17 +1,12 @@
 const mongoose = require('mongoose');
 
-const URL = 'mongodb+srv://admin:0Rx81B8OKhkWgZYj@cluster0.oaekar8.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
-
+const URL = ''
 // Conectar ao banco de dados
 
-const connectDB = async () => {
+async function connectDB() {
   try {
-    await mongoose.connect(URL, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-      useCreateIndex: true,
-      useFindAndModify: false
-    });
+    mongoose.set("strictQuery", false);
+    await mongoose.connect(URL);
     console.log('MongoDB connected...');
   } catch (err) {
     console.error(err.message);
