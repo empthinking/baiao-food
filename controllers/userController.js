@@ -1,56 +1,36 @@
 const User = require('../models/user');
 const asyncHandler = require("express-async-handler");
+const session = require('express-session');
 
-const getUsers = asyncHandler(async (req, res) => {
-  const users = await User.find();
-  res.json(users);
-});
+// Adicionando o controlador de registro de usuário
+const registerUser = asyncHandler(async (req, res) => {
+  const { firstName, lastName, username, password, email, phone, address } = req.body;
 
-const getUserById = asyncHandler(async (req, res) => {
-  const user = await User.findById(req.params.id);
-  if (!user) return res.status(404).json({ message: 'User not found' });
-  res.json(user);
-});
+  // Verifica se o usuário já existe
+  const userExists = await User.findOne({ email });
+  if (userExists) {
+	res.status(400);
+	throw new Error('Usuário já existe');
+  }
 
-const createUser = asyncHandler(async (req, res) => {
-  const user = new User({
-    username: req.body.username,
-    password: req.body.password,
-    email: req.body.email,
-    phone: req.body.phone,
-    address: req.body.address
+  // Cria um novo usuário com as informações fornecidas
+  const user = await User.create({
+	firstName,
+	lastName,
+	username,
+	password, // Lembre-se de adicionar hash à senha antes de salvar no banco de dados real
+	email,
+	phone,
+	address,
   });
-  const newUser = await user.save();
-  res.status(201).json(newUser);
+
+  if (user) {
+	res.redirect('/index');
+  } else {
+	res.status(400);
+	throw new Error('Erro ao criar usuário');
+  }
 });
-
-const updateUser = asyncHandler(async (req, res) => {
-  const user = await User.findById(req.params.id);
-  if (!user) return res.status(404).json({ message: 'User not found' });
-
-  if (req.body.username != null) user.username = req.body.username;
-  if (req.body.password != null) user.password = req.body.password;
-  if (req.body.email != null) user.email = req.body.email;
-  if (req.body.phone != null) user.phone = req.body.phone;
-  if (req.body.address != null) user.address = req.body.address;
-
-  const updatedUser = await user.save();
-  res.json(updatedUser);
-});
-
-const deleteUser = asyncHandler(async (req, res) => {
-  const user = await User.findById(req.params.id);
-  if (!user) return res.status(404).json({ message: 'User not found' });
-
-  await user.remove();
-  res.json({ message: 'User deleted' });
-});
-
 module.exports = {
-  getUsers,
-  getUserById,
-  createUser,
-  updateUser,
-  deleteUser
+  registerUser
 };
-
