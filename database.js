@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const URL = ''
+const URL = 'mongodb+srv://test:123@cluster0.lx68ky3.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0'
 // Conectar ao banco de dados
 
 async function connectDB() {

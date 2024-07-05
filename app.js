@@ -4,13 +4,13 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var connectDB = require('./database');
-/*
+
 (async () => {
   await connectDB();
   // O resto do código para iniciar a aplicação
 })();
 
-*/
+
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
