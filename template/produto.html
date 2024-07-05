@@ -1,0 +1,116 @@
+     <title><%= title %></title><!DOCTYPE html>
+     <html lang="en">
+     
+     <head>
+       <meta charset="UTF-8" />
+       <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+         <title><%= title %></title>
+         <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"/>
+       <!-- Normalize default styles -->
+       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" />
+       <!-- font awesome link -->
+       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+         integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+         crossorigin="anonymous" referrerpolicy="no-referrer" />
+       <!-- Fonts -->
+       <link rel="preconnect" href="https://fonts.googleapis.com" />
+       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+       <link
+         href="https://fonts.googleapis.com/css2?family=Inter&family=Lato:wght@300&family=Nunito:wght@400;500&display=swap"
+         rel="stylesheet" />
+       <!-- Main styles -->
+       <link rel="stylesheet" href="./main.css" />     
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <!-- Inclua aqui o CSS do carrossel (ex: Swiper) -->
+     
+</head>
+<body>
+
+<!-- Cabeçalho -->
+
+
+
+
+<!-- Cabeçalho -->
+
+<!-- Seção Principal -->
+<section class="section">
+    <div class="container">
+        <!-- Carrossel de Produtos -->
+        <div class="carousel">
+            <!-- Slides do carrossel aqui -->
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <img src="img/products/food1.jpg" alt="Slide 1" style="object-fit: cover; width: 100%; height: 100%;">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="img/products/food3.jpg" alt="Slide 2" style="object-fit: cover; width: 100%; height: 100%;">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="img/products/food2.jpg" alt="Slide 3" style="object-fit: cover; width: 100%; height: 100%;">
+                    </div>
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+
+        <!-- Descrição e Ações -->
+        <div class="box">
+            <h1 class="title">Nome do Produto</h1>
+            <p>Descrição detalhada do produto. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <div class="buttons">
+                <button class="button is-danger">Adicionar ao Carrinho</button>
+                <button class="button is-success">Comprar</button>
+            </div>
+        </div>
+
+        <!-- Recomendações -->
+        <h2 class="subtitle">Recomendações</h2>
+        <div class="columns is-multiline">
+            <!-- Cards de recomendações -->
+            <div class="column is-4">
+                <div class="card">
+                    <div class="card-image">
+                        <figure class="image is-4by3">
+                            <img src="img/recomendacao1.jpg" alt="Recomendação 1">
+                        </figure>
+                    </div>
+                    <div class="card-content">
+                        <p class="title is-4">Produto Recomendado</p>
+                        <p class="subtitle is-6">Descrição breve do produto recomendado.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Repita os cards para mais produtos -->
+        </div>
+    </div>
+</section>
+
+<!-- Rodapé -->
+<footer class="footer">
+    <div class="content has-text-centered">
+        <p>© 2023 Seu Restaurante. Todos os direitos reservados.</p>
+    </div>
+</footer>
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<script>
+    var swiper = new Swiper('.swiper-container', {
+        loop: true,
+        pagination: {
+            el: '.swiper-pagination',
+        },
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+        autoplay: {
+            delay: 2500,
+            disableOnInteraction: false,
+        },
+    });
+</script>
+
+</body>
+</html>
