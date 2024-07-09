@@ -7,7 +7,7 @@
     "ts-build": "tsc",
     "tailwindcss": "tailwindcss -i ./src/input.css -o ./public/stylesheets/style.css",
     "build": "npm run ts-build && npm run tailwindcss",
-    "server": "DEBUG=baiao-food:* nodemon ./bin/www",
+    "server": "nodemon ./bin/www",
     "dev": "concurrently \"npm:tailwindcss --watch -m\" \"npm:server\""
   },
   "dependencies": {
