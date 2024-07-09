@@ -7,8 +7,13 @@ var connectDB = require('./database');
 
 (async () => {
   await connectDB();
-  // O resto do código para iniciar a aplicação
 })();
+
+// google auth
+const { OAuth2Client } = require('google-auth-library');
+const bodyParser = require('body-parser');
+const client = new OAuth2Client('553879970155-r8cbjb66jr58l5gk6ldql83qa1htcpbb.apps.googleusercontent.com');
+
 
 
 
@@ -26,6 +31,25 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+// google auth
+app.use(bodyParser.json());
+
+// rota de autênticação
+app.post('/api/google-login', async (req, res) => {
+  const { token } = req.body;
+  try {
+    const ticket = await client.verifyIdToken({
+      idToken: token,
+      audience: '553879970155-r8cbjb66jr58l5gk6ldql83qa1htcpbb.apps.googleusercontent.com'
+    });
+    const payload = ticket.getPayload();
+    res.json({ success: true, user: payload });
+  } catch (error) {
+    res.json({ success: false, error: error.message });
+  }
+});
+
 
 app.use('/', indexRouter);
 app.use('/user', usersRouter);
@@ -45,5 +69,7 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+
 
 module.exports = app;

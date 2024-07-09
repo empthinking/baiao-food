@@ -21,7 +21,7 @@
   <!-- Main styles -->
   <link rel="stylesheet" href="stylesheets/main.css" />
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-  
+
 </head>
 
 <body>
@@ -30,7 +30,7 @@
     <div class="container">
       <div class="header__navbar">
         <div class="header__menu--left-side">
-          <a href="./index.html">
+          <a href="/">
             <img class="header__menu--logo" src="./img/main_logo.svg" alt="Logo do site de entrega de comida" />
           </a>
 
@@ -46,17 +46,58 @@
             <a class="menu_link" href="#">Promoções</a>
             <span class="header__menu--divider-vertical"></span>
             <a class="menu_link active" href="#">Meus pedidos</a>
+
+            <a href="/user/register">
+              <button type="button" role="button" class="btn--link btn--size-m landing-v2-header__sing-up"
+                label="Criar conta" theme="link" variant="landing-v2-header__sing-up" color="primary" target=""
+                rel=""><span class="btn__label menu_link active">Criar
+                  conta</span>
+              </button>
+            </a>
+
+            <!-- botão de registro -->
+            <a href="/user/Login">
+              <button type="button" role="button" class="btn btn--default btn--size-m landing-v2-header__sing-in mx-3  hover:bg-red-700"
+                label="Entrar" variant="landing-v2-header__sing-in" theme="default" color="primary" target=""
+                rel=""><span class="btn__label menu_link active"> Entrar</span>
+              </button>
+            </a>
+
+
           </nav>
-          <div class="header__menu--icon">
+          <!-- <div class="header__menu--icon">
             <a href="#"><img class="header__menu--icon-item" src="img/shopping bag.svg" alt="ícone de sacola de compras" /></a>
             <span class="header__menu--icon-number">4</span>
           </div>
           <a href="./user/perfil">
             <img class="header__menu--useravatar" src="img/useravatar.svg" alt="imagem do avatar do usuário" />
-          </a>
-          <span class="header__menu--divider-vertical"></span>
-          <img class="header__menu--icon-mobile" src="img/menu.svg" alt="ícone do menu do cabeçalho" />
+          </a> -->
+
+          <!-- <span class="header__menu--divider-vertical"></span> -->
+          <!-- <img class="header__menu--icon-mobile" src="img/menu.svg" alt="ícone do menu do cabeçalho" /> -->
         </div>
       </div>
     </div>
+    <button id="menu-toggle" class="md:hidden focus:outline-none">
+      <img src="img/menu.svg" alt="ícone do menu do cabeçalho" class="h-8 w-8" />
+    </button>
+
   </header>
+  <div id="mobile-menu" class=" container mt-11 hidden md:hidden">
+    <div class="flex flex-col items-center space-y-4 mt-4">
+      <a class="menu_link" href="#">Restaurantes</a>
+      <a class="menu_link" href="#">Promoções</a>
+      <a class="menu_link active" href="#">Meus pedidos</a>
+      <a href="/user/register" class="menu_linkyy">Criar conta</a>
+      <a href="/user/Login" class="menu_link rounded-lg px-4">Entrar</a>
+    </div>
+  </div>
+
+  <script>
+    const menuToggle = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    menuToggle.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+  </script>
